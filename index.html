@@ -1,304 +1,468 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Zero Grau Ar Condicionado | Climatização Residencial e Comercial</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zero Grau Ar Condicionado | Climatização em Lucas do Rio Verde</title>
+    <meta name="description" content="Especialista em instalação, manutenção e limpeza de ar condicionado residencial e comercial em Lucas do Rio Verde - MT." />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Climatização residencial e comercial em Lucas do Rio Verde. Instalação, manutenção e limpeza de ar condicionado. Atendimento rápido via WhatsApp."
-  />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    <style>
+        /* RESET E GERAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-    /* HEADER */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-    }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
 
-    nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        /* HEADER */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    nav img {
-      height: 48px;
-    }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #1e293b;
-    }
+        nav img { height: 50px; }
 
-    nav a:hover {
-      color: #2563eb;
-    }
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e293b;
+            transition: 0.3s;
+        }
 
-    /* HERO */
-    .hero {
-      background: #2563eb;
-      color: #fff;
-      padding: 100px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+        .nav-links a:hover { color: #0073ff; }
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
+        /* HERO CARROSSEL */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            overflow: hidden;
+            background: #000;
+        }
 
-    .hero span {
-      color: #bfdbfe;
-    }
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
 
-    .hero p {
-      font-size: 22px;
-      margin-bottom: 40px;
-      color: #e0e7ff;
-    }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
 
-    .hero-buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 16px 32px;
-      border-radius: 40px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 18px;
-    }
+        /* OVERLAY GRADIENTE */
+        .slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(0,0,0,0.85),
+                rgba(0,0,0,0.4),
+                rgba(0,0,0,0.1)
+            );
+        }
 
-    .btn-primary {
-      background: #ffffff;
-      color: #2563eb;
-    }
+        /* CONTEÚDO DO SLIDE */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            max-width: 600px;
+            color: #fff;
+            z-index: 2;
+            opacity: 0;
+            transform: translate(-30px, -50%);
+            transition: all 0.8s ease;
+        }
 
-    .btn-secondary {
-      border: 2px solid #ffffff;
-      color: #ffffff;
-    }
+        .slide.active .content {
+            opacity: 1;
+            transform: translate(0, -50%);
+        }
 
-    /* SERVICES SUMMARY */
-    .services {
-      padding: 80px 20px;
-      background: #ffffff;
-      text-align: center;
-    }
+        .content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
 
-    .services h2 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+        .content p {
+            font-size: clamp(16px, 2vw, 19px);
+            margin-bottom: 35px;
+            color: #eaeaea;
+        }
 
-    .services p {
-      max-width: 700px;
-      margin: 0 auto 50px;
-      color: #64748b;
-    }
+        /* BOTÃO HERO */
+        .content a {
+            display: inline-block;
+            background: #0073ff;
+            color: #fff;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+        .content a:hover {
+            background: #0056cc;
+            transform: scale(1.05);
+        }
 
-    .service-card {
-      padding: 30px;
-      border-radius: 16px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      transition: all .3s;
-    }
+        /* SETAS DE NAVEGAÇÃO */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .service-card:hover {
-      background: #ffffff;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-      transform: translateY(-5px);
-    }
+        .arrow:hover { background: #0073ff; }
+        .arrow.left { left: 25px; }
+        .arrow.right { right: 25px; }
 
-    /* RESIDENTIAL / COMMERCIAL */
-    .focus {
-      padding: 80px 20px;
-      background: #eff6ff;
-    }
+        /* INDICADORES (BOLINHAS) */
+        .indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
 
-    .focus-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
+        .indicators span {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    .focus-box {
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 20px;
-      border: 1px solid #bfdbfe;
-    }
+        .indicators span.active {
+            background: #0073ff;
+            width: 30px;
+            border-radius: 10px;
+        }
 
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #dbeafe;
-      color: #2563eb;
-      font-weight: bold;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-bottom: 15px;
-    }
+        /* SEÇÃO DE SERVIÇOS */
+        .services {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-    /* CTA */
-    .cta {
-      background: #2563eb;
-      color: #ffffff;
-      padding: 100px 20px;
-      text-align: center;
-    }
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #0f172a;
+        }
 
-    .cta a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 20px 40px;
-      background: #ffffff;
-      color: #2563eb;
-      font-size: 20px;
-      font-weight: bold;
-      border-radius: 50px;
-      text-decoration: none;
-    }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-    /* FOOTER */
-    footer {
-      background-color: #0f2a44;
-      color: #ffffff;
-      padding: 40px 20px;
-    }
+        .service-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
 
-    .footer-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-    }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-color: #0073ff;
+        }
 
-    .footer-info {
-      margin: 20px 0;
-      font-size: 14px;
-    }
+        /* CTA FINAL */
+        .cta {
+            background: #0073ff;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-    .footer-bottom {
-      border-top: 1px solid #1e3a5f;
-      padding-top: 20px;
-      font-size: 12px;
-      color: #93c5fd;
-    }
+        .cta h2 { font-size: 32px; margin-bottom: 20px; }
+        .cta a {
+            display: inline-block;
+            background: #fff;
+            color: #0073ff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 20px;
+        }
 
-    /* WHATSAPP FLOAT */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
-      color: #fff;
-      padding: 14px 18px;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      z-index: 999;
-    }
-  </style>
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        .footer-info p { margin-bottom: 10px; color: #fff; }
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+            font-size: 14px;
+        }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1001;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            nav img { height: 40px; }
+            .nav-links { display: none; } /* Pode ser substituído por um menu hambúrguer */
+            .hero { height: 75vh; }
+            .content { left: 5%; right: 5%; text-align: center; transform: translate(0, -50%); }
+            .slide.active .content { transform: translate(0, -50%); }
+            .arrow { width: 45px; height: 45px; font-size: 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
-  <nav>
-    <img src="assets/logo.png" alt="Zero Grau Ar Condicionado">
-    <div>
-      <a href="index.html">Home</a>
-      <a href="servicos.html">Serviços</a>
-      <a href="contato.html">Contato</a>
-    </div>
-  </nav>
+    <nav>
+        <img src="assets/logo.png" alt="Zero Grau Ar Condicionado">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+        </div>
+    </nav>
 </header>
 
-<section class="hero">
-  <h1>Climatização <br><span>Residencial e Comercial</span></h1>
-  <p>Atendimento rápido com técnicos qualificados.</p>
-  <div class="hero-buttons">
-    <a href="https://wa.me/5565999780769" target="_blank" class="btn-primary">Solicitar Orçamento</a>
-    <a href="servicos.html" class="btn-secondary">Ver Serviços</a>
-  </div>
-</section>
+<main>
+    <section class="hero" id="hero">
+        <div class="slides" id="slides">
+            <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/zerograu-ar/zerograu-ar.github.io/refs/heads/main/assets/supermercado-servico-zero-grau-ar-condicionado-lucas-do-rio-verde.jpeg');">
+                <div class="content">
+                    <h1>Instalação de Ar com Garantia</h1>
+                    <p>Instalação profissional que evita problemas, reduz consumo de energia e aumenta a vida útil do equipamento.</p>
+                    <a href="https://wa.me/5565999780769">Solicitar orçamento</a>
+                </div>
+            </div>
 
-<section class="services">
-  <h2>Nossos Serviços</h2>
-  <p>Soluções completas em climatização para conforto e eficiência.</p>
+            <div class="slide" style="background-image:url('https://raw.githubusercontent.com/zerograu-ar/zerograu-ar.github.io/refs/heads/main/assets/alojamento6-servico-zero-grau-ar-condicionado-lucas-do-rio-verde.png');">
+                <div class="content">
+                    <h1>Atendimento Técnico em Fazendas</h1>
+                    <p>Estrutura completa para atender áreas rurais com rapidez, segurança e suporte especializado.</p>
+                    <a href="https://wa.me/5565999780769">Falar com especialista</a>
+                </div>
+            </div>
 
-  <div class="services-grid">
-    <div class="service-card">Instalação de Ar Condicionado</div>
-    <div class="service-card">Manutenção Preventiva</div>
-    <div class="service-card">Limpeza Técnica</div>
-    <div class="service-card">PMOC</div>
-  </div>
-</section>
+            <div class="slide" style="background-image:url('https://raw.githubusercontent.com/zerograu-ar/zerograu-ar.github.io/refs/heads/main/assets/casa-ar-3-condicionado-instalado-limpo-zero-grau-ar-condicionado-lucas-do-rio-verde.jpeg');">
+                <div class="content">
+                    <h1>Ar Mais Limpo e Saudável</h1>
+                    <p>Limpeza técnica que elimina impurezas, melhora o ar e protege sua saúde e da sua família.</p>
+                    <a href="https://wa.me/5565999780769">Agendar limpeza</a>
+                </div>
+            </div>
 
-<section class="focus">
-  <div class="focus-grid">
-    <div class="focus-box">
-      <span class="badge">Residencial</span>
-      <h3>Conforto para sua Família</h3>
-      <p>Instalações eficientes, silenciosas e seguras para sua casa.</p>
-    </div>
+            <div class="slide" style="background-image:url('https://raw.githubusercontent.com/zerograu-ar/zerograu-ar.github.io/refs/heads/main/assets/servico4-zero-grau-ar-condicionado-lucas-do-rio-verde.png');">
+                <div class="content">
+                    <h1>Economia Real na Energia</h1>
+                    <p>Climatização eficiente que mantém conforto térmico com menor gasto na conta de luz.</p>
+                    <a href="https://wa.me/5565999780769">Descobrir como</a>
+                </div>
+            </div>
 
-    <div class="focus-box">
-      <span class="badge">Comercial</span>
-      <h3>Soluções para Empresas</h3>
-      <p>Planos PMOC, suporte técnico e eficiência energética.</p>
-    </div>
-  </div>
-</section>
+            <div class="slide" style="background-image:url('https://raw.githubusercontent.com/zerograu-ar/zerograu-ar.github.io/refs/heads/main/assets/instalacao4-servico-dia-a-dia-zero-grau-ar-condicionado-lucas-do-rio-verde.jpg');">
+                <div class="content">
+                    <h1>Serviço Seguro e Confiável</h1>
+                    <p>Técnicos treinados, uso de EPI e total cuidado em cada etapa do serviço.</p>
+                    <a href="https://wa.me/5565999780769">Entrar em contato</a>
+                </div>
+            </div>
+        </div>
 
-<section class="cta">
-  <h2>Não sofra com o calor!</h2>
-  <p>Fale agora com nossa equipe e solicite seu orçamento.</p>
-  <a href="https://wa.me/5565999780769" target="_blank">Chamar no WhatsApp</a>
-</section>
+        <button class="arrow left" onclick="prevSlide()">‹</button>
+        <button class="arrow right" onclick="nextSlide()">›</button>
+
+        <div class="indicators" id="indicators"></div>
+    </section>
+
+    <section class="services" id="servicos">
+        <h2>Nossos Especialistas Oferecem</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Instalação</h3>
+                <p>Equipamentos novos com instalação técnica e garantia.</p>
+            </div>
+            <div class="service-card">
+                <h3>Manutenção</h3>
+                <p>Preventiva e corretiva para manter seu aparelho 100%.</p>
+            </div>
+            <div class="service-card">
+                <h3>Limpeza Técnica</h3>
+                <p>Higienização profunda para ar puro e livre de bactérias.</p>
+            </div>
+            <div class="service-card">
+                <h3>Projetos PMOC</h3>
+                <p>Adequação técnica e legal para empresas e comércios.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contato">
+        <h2>Pronto para climatizar seu ambiente?</h2>
+        <p>Atendimento rápido em Lucas do Rio Verde e região.</p>
+        <a href="https://wa.me/5565999780769" target="_blank">Falar no WhatsApp agora</a>
+    </section>
+</main>
 
 <footer>
-  <div class="footer-container">
-    <p>📞 (65) 99978-0769</p>
-    <p>📍 Rua Constantina, 2076 – Bairro Rio Verde – Lucas do Rio Verde – MT</p>
-    <div class="footer-bottom">
-      © 2026 Zero Grau Ar Condicionado. Todos os direitos reservados.
+    <div class="footer-info">
+        <p>📞 (65) 99978-0769</p>
+        <p>📍 Rua Constantina, 2076 – Bairro Rio Verde – Lucas do Rio Verde – MT</p>
     </div>
-  </div>
+    <div class="copyright">
+        © 2026 Zero Grau Ar Condicionado. Todos os direitos reservados.
+    </div>
 </footer>
 
-<a href="https://wa.me/5565999780769" target="_blank" class="whatsapp-float">
-  WhatsApp
+<a href="https://wa.me/5565999780769" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 32 32" style="width:32px; height:32px; fill:currentColor;"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.475 2.025 7.775l-2.025 7.425 7.625-1.975c2.225 1.175 4.775 1.85 7.45 1.85 8.837 0 16-7.163 16-16s-7.163-16-16-16zM24 22c-0.325 0.925-1.625 1.7-2.6 1.875-0.7 0.125-1.6 0.225-4.65-1.025-3.925-1.6-6.45-5.575-6.65-5.85s-1.625-2.15-1.625-4.125c0-1.95 1.025-2.925 1.4-3.325 0.3-0.3 0.775-0.45 1.225-0.45h0.875c0.275 0 0.525 0.025 0.75 0.55 0.3 0.725 1.025 2.5 1.125 2.7 0.1 0.2 0.175 0.425 0.025 0.725s-0.225 0.475-0.45 0.725c-0.225 0.225-0.475 0.5-0.675 0.675s-0.45 0.4-0.2 0.85c0.25 0.425 1.075 1.775 2.325 2.875 1.6 1.425 2.95 1.875 3.375 2.075s0.675 0.15 0.925-0.125c0.25-0.275 1.05-1.225 1.325-1.65s0.55-0.35 0.925-0.2c0.375 0.15 2.375 1.125 2.775 1.325s0.675 0.3 0.775 0.475c0.125 0.175 0.125 1.025-0.2 1.95z"></path></svg>
 </a>
+
+<script>
+    let index = 0;
+    let interval;
+    const slides = document.querySelectorAll(".slide");
+    const indicatorsContainer = document.getElementById("indicators");
+    const total = slides.length;
+
+    /* CRIA INDICADORES DINAMICAMENTE */
+    slides.forEach((_, i) => {
+        const dot = document.createElement("span");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goToSlide(i));
+        indicatorsContainer.appendChild(dot);
+    });
+
+    function updateSlides() {
+        // Movimento do container de slides
+        document.getElementById("slides").style.transform = `translateX(-${index * 100}%)`;
+
+        // Ativação visual do slide e indicadores
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
+
+        const dots = indicatorsContainer.querySelectorAll("span");
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+        });
+    }
+
+    function nextSlide() {
+        index = (index + 1) % total;
+        updateSlides();
+    }
+
+    function prevSlide() {
+        index = (index - 1 + total) % total;
+        updateSlides();
+    }
+
+    function goToSlide(i) {
+        index = i;
+        updateSlides();
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay(); // Limpa se já houver um rodando
+        interval = setInterval(nextSlide, 5000); // 5 segundos para leitura
+    }
+
+    function stopAutoPlay() {
+        clearInterval(interval);
+    }
+
+    /* INTERAÇÕES */
+    const hero = document.getElementById("hero");
+    hero.addEventListener("mouseenter", stopAutoPlay);
+    hero.addEventListener("mouseleave", startAutoPlay);
+
+    // Inicialização
+    updateSlides();
+    startAutoPlay();
+</script>
 
 </body>
 </html>
